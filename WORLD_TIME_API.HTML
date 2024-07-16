@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORLD TIME API</title>
+</head>
+<body>
+    <h1 align="center" style="background-color:antiquewhite;">WORLD TIME API</h1>
+    <form action="">
+        <table align="center" border="2">
+            <tr>
+                <td><b>Input City:</b></td>
+                <td><input type="text" id="cy"></td>
+            </tr>
+           
+            <tr>
+                <td colspan="2" align="center">
+                  
+            </tr>
+            
+            <tr>
+                 <td colspan="2" align="center"><button id="submit" style="background-color: green;">click me</button></td>
+            </tr>
+        </table> <br>
+<div align="center" style="font-size: large;"><b>
+City: <span id="cityn"></span> <br>
+Date_Time: <span id="datet"></span><br></b>
+</div>
+
+</form>
+
+
+
+<script>
+
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '2a43ed9ee8msh226491b982421aap1e98acjsnee909af20e8e',
+		'X-RapidAPI-Host': 'world-time-by-api-ninjas.p.rapidapi.com'
+	}
+}
+    
+    
+    
+    inp=document.getElementById('cy')
+    inp2=document.getElementById('datet')
+    sub=document.getElementById('submit')
+    c1=document.getElementById('cityn')
+    
+    
+    
+    let datetimeapi=(city)=>{
+    c1.innerHTML=city
+    fetch('https://world-time-by-api-ninjas.p.rapidapi.com/v1/worldtime?city='+city,options)
+    .then((response)=>{
+            console.log(response.status)
+            console.log(response.ok)
+            return response.json()
+        })
+        .then((data)=>{
+            console.log(data)
+        
+            // inp.innerHTML=data.city
+            inp2.innerHTML=data.datetime
+    
+     }
+     )}
+    
+     sub.addEventListener('click',(event)=>{event.preventDefault(),
+        datetimeapi (inp.value)})
+    
+        datetimeapi('Pune')
+        
+    
+    
+    
+    
+    </script>
+</body>
+</html>
